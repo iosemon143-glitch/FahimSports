@@ -80,7 +80,6 @@ import com.example.model.ProductCategory
 import com.example.model.sampleCategories
 import com.example.model.sampleProducts
 import com.example.ui.components.FloatingBottomNavBar
-import com.example.ui.components.IosStatusBar
 import com.example.ui.components.NavItem
 import com.example.ui.theme.GradientEnd
 import com.example.ui.theme.GradientStart
@@ -118,20 +117,14 @@ fun HomeScreen(
       modifier = Modifier
         .fillMaxSize()
         .verticalScroll(rememberScrollState())
-        .padding(bottom = 90.dp) // space for floating bottom bar
+        .padding(bottom = 126.dp) // keep content clear of floating bottom bar
     ) {
-      // 1. Status bar with 9:41, signal, wifi, and battery icons
-      IosStatusBar(
-        timeText = "9:41",
-        contentColor = TextPrimary,
-        showDynamicIsland = true
-      )
+      // Use the real Android status bar; no duplicate fake iOS status bar.
+      Spacer(modifier = Modifier.height(22.dp))
 
-      Spacer(modifier = Modifier.height(10.dp))
-
-      // 2. Header: Profile photo, Good Morning + Antony Thomas, circular notification bell
+      // Header: Profile photo, greeting + store name, circular notification bell
       HomeHeader(
-        userName = "Antony Thomas",
+        userName = "Fahim Sports",
         greeting = "Good Morning",
         notificationCount = 2,
         onNotificationClick = onNotificationClick,
@@ -333,8 +326,10 @@ private fun SearchAndFilterRow(
           if (query.isEmpty()) {
             Text(
               text = "Search for sports products...",
-              fontSize = 14.sp,
-              color = TextSecondary.copy(alpha = 0.8f)
+              fontSize = 13.sp,
+              color = TextSecondary.copy(alpha = 0.8f),
+              maxLines = 1,
+              overflow = TextOverflow.Ellipsis
             )
           }
           BasicTextField(

@@ -78,7 +78,6 @@ fun SportsStoreApp(modifier: Modifier = Modifier) {
   var searchQuery by remember { mutableStateOf("") }
   var wishlistIds by remember { mutableStateOf(setOf("prod_jersey")) }
   var currentNavItem by remember { mutableStateOf(NavItem.HOME) }
-  var enablePhoneFrame by remember { mutableStateOf(true) }
 
   val snackbarHostState = remember { SnackbarHostState() }
   val scope = rememberCoroutineScope()
@@ -91,21 +90,12 @@ fun SportsStoreApp(modifier: Modifier = Modifier) {
     contentAlignment = Alignment.Center
   ) {
     val isWideScreen = maxWidth > 520.dp
-    val showFrame = enablePhoneFrame && isWideScreen
+    val showFrame = false
 
     Column(
       modifier = Modifier.fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      // Top Screen Switcher & Frame Controls
-      TopDemoControlsBar(
-        currentScreen = currentScreen,
-        onScreenChange = { currentScreen = it },
-        isWideScreen = isWideScreen,
-        enablePhoneFrame = enablePhoneFrame,
-        onToggleFrame = { enablePhoneFrame = !enablePhoneFrame }
-      )
-
       // Main Phone Canvas
       Box(
         modifier = if (showFrame) {
@@ -138,26 +128,6 @@ fun SportsStoreApp(modifier: Modifier = Modifier) {
         Scaffold(
           modifier = Modifier.fillMaxSize(),
           snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-          bottomBar = {
-            // iOS Home Indicator Bar at the very bottom
-            Box(
-              modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFFF9FAFC))
-                .height(18.dp)
-                .testTag("ios_home_indicator_container"),
-              contentAlignment = Alignment.Center
-            ) {
-              Box(
-                modifier = Modifier
-                  .width(134.dp)
-                  .height(4.5.dp)
-                  .clip(RoundedCornerShape(3.dp))
-                  .background(Color(0xFF1C1C1E).copy(alpha = 0.5f))
-                  .testTag("ios_home_indicator_bar")
-              )
-            }
-          }
         ) { innerPadding ->
           Box(
             modifier = Modifier

@@ -61,7 +61,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.R
 import com.example.model.Product
-import com.example.ui.components.IosStatusBar
 import com.example.ui.theme.OrangeAccent
 import com.example.ui.theme.OrangePrimary
 import com.example.ui.theme.SurfaceLightGray
@@ -95,16 +94,10 @@ fun ProductDetailsScreen(
         .verticalScroll(rememberScrollState())
         .padding(bottom = 100.dp) // space for bottom fixed action row
     ) {
-      // 1. iOS Status Bar
-      IosStatusBar(
-        timeText = "9:41",
-        contentColor = TextPrimary,
-        showDynamicIsland = true
-      )
+      // Use the real Android status bar; no duplicate fake iOS status bar.
+      Spacer(modifier = Modifier.height(18.dp))
 
-      Spacer(modifier = Modifier.height(6.dp))
-
-      // 2. Top Bar: circular back button (left), "Details" title (center), circular three-dot menu (right)
+      // Top Bar: circular back button (left), "Details" title (center), circular three-dot menu (right)
       DetailsTopBar(
         onBackClick = onBackClick,
         onMenuClick = { showMenu = !showMenu },
