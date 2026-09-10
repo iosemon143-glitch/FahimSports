@@ -1,0 +1,6 @@
+{
+  "name": "NEXT LEVEL",
+  "description": "Premium Sports E-commerce Mobile App with iOS style status bar, curated categories, promo banner, and product details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

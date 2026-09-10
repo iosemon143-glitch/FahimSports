@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Custom smooth scroll and scrollbar hidden for iOS feel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glassmorphism helpers */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Authentic iPhone iOS Liquid Glass */
+.iphone-liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.68) 50%, rgba(255, 255, 255, 0.80) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 14px 34px -4px rgba(15, 23, 42, 0.12),
+    0 4px 12px -2px rgba(15, 23, 42, 0.05),
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* Liquid Wave and Sheen GPU-Accelerated Animations */
+@keyframes liquidWaveA {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes liquidWaveB {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes liquidSheen {
+  0% { transform: translate3d(-120%, 0, 0) skewX(-22deg); }
+  40%, 100% { transform: translate3d(240%, 0, 0) skewX(-22deg); }
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translate3d(0, 110%, 0) scale(0.6); opacity: 0; }
+  40% { opacity: 0.75; }
+  100% { transform: translate3d(0, -20%, 0) scale(1.1); opacity: 0; }
+}
+
+.animate-liquid-wave-a {
+  animation: liquidWaveA 4.5s linear infinite;
+  will-change: transform;
+}
+
+.animate-liquid-wave-b {
+  animation: liquidWaveB 3.2s linear infinite;
+  will-change: transform;
+}
+
+.animate-liquid-sheen {
+  animation: liquidSheen 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-bubble-1 {
+  animation: bubbleFloat 2.4s ease-out 0.2s infinite;
+  will-change: transform, opacity;
+}
+
+.animate-bubble-2 {
+  animation: bubbleFloat 2.9s ease-out 0.9s infinite;
+  will-change: transform, opacity;
+}
+
+.animate-bubble-3 {
+  animation: bubbleFloat 2.1s ease-out 1.5s infinite;
+  will-change: transform, opacity;
+}
+
+/* Liquid lens specular highlight reflection */
+.liquid-glass-lens {
+  position: absolute;
+  top: 1px;
+  left: 10px;
+  right: 10px;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+  border-radius: 9999px 9999px 20px 20px;
+  pointer-events: none;
+}
+
+/* Liquid active capsule indicator */
+.liquid-pill-active {
+  background: linear-gradient(180deg, #FF7B22 0%, #FF6000 50%, #EA4C00 100%);
+  box-shadow:
+    0 8px 22px -2px rgba(255, 96, 0, 0.52),
+    0 3px 8px 0 rgba(255, 96, 0, 0.32),
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3.5px 0 rgba(0, 0, 0, 0.22);
+}
+
+.liquid-pill-sheen {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  right: 4px;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 9999px 9999px 12px 12px;
+  pointer-events: none;
+}
+
+/* Gemini Live Background Color Grading & Dark Theme adaptation */
+.gemini-dark-mode {
+  color: #F1F5F9;
+}
+
+.gemini-dark-mode .text-\[\#141416\] {
+  color: #F8FAFC !important;
+}
+
+.gemini-dark-mode .text-\[\#777E90\] {
+  color: #94A3B8 !important;
+}
+
+.gemini-dark-mode .bg-white {
+  background-color: rgba(18, 24, 42, 0.94) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F8FAFC !important;
+}
+
+.gemini-dark-mode .bg-\[\#F3F4F8\] {
+  background-color: rgba(30, 41, 62, 0.85) !important;
+  color: #F8FAFC !important;
+}
+
+.gemini-dark-mode input {
+  color: #F8FAFC !important;
+}
+
+.gemini-dark-mode .iphone-liquid-glass {
+  background: linear-gradient(135deg, rgba(22, 28, 48, 0.92) 0%, rgba(14, 18, 34, 0.82) 50%, rgba(20, 26, 44, 0.88) 100%) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow:
+    0 16px 36px -4px rgba(0, 0, 0, 0.45),
+    0 4px 12px -2px rgba(0, 0, 0, 0.25),
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.gemini-dark-mode .liquid-glass-lens {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.02) 60%, transparent 100%) !important;
+}
+
+
+
+
+/* NEXT LEVEL stability + dark-mode contrast */
+.nl-card,
+.nl-order-card { color: #141416; }
+
+.nl-chat-bot { color: #141416; }
+.nl-chat-input { color: #141416; }
+
+.gemini-dark-mode .nl-card,
+.gemini-dark-mode .nl-order-card {
+  background: rgba(18, 24, 42, 0.94) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(255,255,255,0.10) !important;
+}
+.gemini-dark-mode .nl-chat-bot {
+  background: rgba(36, 45, 66, 0.96) !important;
+  color: #F8FAFC !important;
+}
+.gemini-dark-mode .nl-chat-input {
+  background: rgba(30, 41, 62, 0.96) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(255,255,255,0.10) !important;
+}
+.gemini-dark-mode .nl-chat-input::placeholder { color: #94A3B8 !important; }
+.gemini-dark-mode .nl-typing-dots { background: rgba(51,65,85,.9) !important; }
+.gemini-dark-mode .nl-facebook-copy { color: #E2E8F0 !important; }
+.gemini-dark-mode .nl-facebook-meta { color: #94A3B8 !important; border-color: rgba(255,255,255,.10) !important; }
+.gemini-dark-mode .nl-orders-modal {
+  background: rgba(8, 12, 24, 0.98) !important;
+  color: #F8FAFC !important;
+}
+.gemini-dark-mode .nl-orders-modal .bg-white { background: rgba(18,24,42,.96) !important; }
+.gemini-dark-mode .nl-orders-modal .bg-\[\#F8F9FD\] { background: rgba(22,28,48,.96) !important; }
+.gemini-dark-mode .nl-orders-modal .bg-gray-100 { background: rgba(51,65,85,.8) !important; color:#E2E8F0 !important; }
+.gemini-dark-mode .nl-orders-modal .text-gray-500,
+.gemini-dark-mode .nl-orders-modal .text-gray-600,
+.gemini-dark-mode .nl-orders-modal .text-gray-700,
+.gemini-dark-mode .nl-orders-modal .text-gray-400 { color:#94A3B8 !important; }
+.gemini-dark-mode .nl-orders-modal .border-gray-100,
+.gemini-dark-mode .nl-orders-modal .border-gray-200 { border-color: rgba(255,255,255,.10) !important; }
+
+/* Avoid accidental horizontal overflow on compact Android screens. */
+html, body, #root { max-width: 100%; overflow-x: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Stable premium background for Android: rich depth without a continuously repainting canvas. */
+.nl-static-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.nl-static-dark {
+  background:
+    radial-gradient(85% 55% at 15% 12%, rgba(37, 99, 235, .20), transparent 70%),
+    radial-gradient(70% 55% at 88% 22%, rgba(124, 58, 237, .18), transparent 72%),
+    radial-gradient(75% 55% at 35% 86%, rgba(6, 182, 212, .12), transparent 70%),
+    linear-gradient(180deg, #080c18 0%, #0b1020 52%, #070b15 100%);
+}
+.nl-static-light {
+  background:
+    radial-gradient(85% 55% at 15% 12%, rgba(59, 130, 246, .12), transparent 70%),
+    radial-gradient(70% 55% at 88% 22%, rgba(139, 92, 246, .10), transparent 72%),
+    linear-gradient(180deg, #f8f9fd 0%, #eef2f8 100%);
+}
+
+/* The app already renders its own iOS-style status bar inside the WebView. */
+html, body { margin: 0; padding: 0; }
+
+/* Keep transitions responsive without large animated layout jumps. */
+@media (max-width: 430px) {
+  .iphone-liquid-glass { width: 94% !important; max-width: 360px; }
+}
+
+/* Stable premium atmosphere: no continuously repainting canvas on Android WebView. */
+.nl-static-atmosphere{position:absolute;inset:0;pointer-events:none;z-index:0}
+.nl-static-dark{background:radial-gradient(85% 55% at 15% 12%,rgba(37,99,235,.20),transparent 70%),radial-gradient(70% 55% at 88% 22%,rgba(124,58,237,.18),transparent 72%),radial-gradient(75% 55% at 35% 86%,rgba(6,182,212,.12),transparent 70%),linear-gradient(180deg,#080c18 0%,#0b1020 52%,#070b15 100%)}
+.nl-static-light{background:radial-gradient(85% 55% at 15% 12%,rgba(59,130,246,.12),transparent 70%),radial-gradient(70% 55% at 88% 22%,rgba(139,92,246,.10),transparent 72%),linear-gradient(180deg,#f8f9fd 0%,#eef2f8 100%)}
+html,body{margin:0;padding:0}
+@media(max-width:430px){.iphone-liquid-glass{width:94%!important;max-width:360px}}

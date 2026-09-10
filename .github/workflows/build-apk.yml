@@ -1,0 +1,36 @@
+name: Build NEXT LEVEL APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install web dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build original premium web UI
+        run: npm run build
+      - name: Package web UI into Android assets
+        run: |
+          rm -rf app/src/main/assets/web
+          mkdir -p app/src/main/assets/web
+          cp -R dist/. app/src/main/assets/web/
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build debug APK
+        run: gradle :app:assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NEXT-LEVEL-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
